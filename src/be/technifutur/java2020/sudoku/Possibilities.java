@@ -36,13 +36,7 @@ public class Possibilities {
     }
 
     public int size(){                                                          //Compte le nombre de possibilités restantes
-        int count = 9;
-        for(int c = 1; c<=9;c++){
-            if (((this.data & (1<<(c-1))) != 0)) {
-                count--;
-            }
-        }
-        return count;
+        return 9-Integer.bitCount(this.data);
     }
 
     public static void main(String[] args) {
