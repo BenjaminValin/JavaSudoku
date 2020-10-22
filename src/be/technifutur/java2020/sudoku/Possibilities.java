@@ -1,7 +1,14 @@
 package be.technifutur.java2020.sudoku;
 
 public class Possibilities {
+
     private int data = 0b000000000;
+
+    public Possibilities(int... initialValues){
+        for (int val : initialValues) {                                         //Foreach qui ajoute chaque valeur passée en paramètre
+            add(val);
+        }
+    }
 
     public boolean add(int i){                                                  //Ajoute une possibilité
         boolean ok = false;
@@ -36,7 +43,7 @@ public class Possibilities {
 
     public static void main(String[] args) {
 
-        Possibilities p = new Possibilities();
+        Possibilities p = new Possibilities(1,4,6,7);
 
         System.out.println(p.add(5));
         System.out.println(p.add(2));
