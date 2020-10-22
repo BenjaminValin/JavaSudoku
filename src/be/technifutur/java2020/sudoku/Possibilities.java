@@ -12,23 +12,19 @@ public class Possibilities {
 
     public boolean add(int i){                                                  //Ajoute une possibilité
         boolean ok = false;
-        System.out.println("Ajout de " + i);
         if (!this.contains(i)){
             this.data = this.data | (1<<(i-1));                                 //this.data | = (1<<(i-1)) fonctionne aussi
             ok = true;
         }
-        System.out.println(Integer.toBinaryString(this.data));
         return ok;
     }
 
     public boolean remove(int i){                                               //Retire une possibilité
         boolean ok = false;
-        System.out.println("Retrait de " + i);
         if (this.contains(i)){
             this.data = (this.data  ^ (1<<(i-1)));                              //this.data = (this.data & ~(1<<(i-1))) fonctionne aussi
             ok = true;
         }
-        System.out.println(Integer.toBinaryString(this.data));
         return ok;
     }
 
@@ -41,7 +37,7 @@ public class Possibilities {
         return Integer.bitCount(this.data);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         Possibilities p = new Possibilities(1,4,6,7);
 
@@ -63,5 +59,5 @@ public class Possibilities {
         System.out.println("Le chiffre 2 est-il déjà placé? : " + p.contains(2));
         System.out.println("Possibilités déjà utilisées pour cette case : " + p.size());
 
-    }
+    }*/
 }
