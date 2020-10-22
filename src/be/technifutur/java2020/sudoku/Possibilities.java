@@ -26,8 +26,7 @@ public class Possibilities {
     }
 
     public boolean contains(int i){                                             //Vérifie si un nombre est possible
-        boolean ok = true;
-        ok = (this.data & (1 << (i - 1))) == 0;
+        boolean ok = (this.data & (1 << (i - 1))) == 0;
         return ok;
     }
 
