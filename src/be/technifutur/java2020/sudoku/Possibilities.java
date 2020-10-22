@@ -6,9 +6,7 @@ public class Possibilities {
     public boolean add(int i){                                                  //Ajoute une possibilité
         boolean ok = false;
         System.out.println("Ajout de " + i);
-        if ((this.data & (1<<(i-1))) != 0){
-            ok = false;
-        } else {
+        if (this.contains(i)){
             this.data = this.data | (1<<(i-1));
             ok = true;
         }
@@ -17,13 +15,11 @@ public class Possibilities {
     }
 
     public boolean remove(int i){                                               //Retire une possibilité
-        boolean ok = true;
+        boolean ok = false;
         System.out.println("Retrait de " + i);
-        if ((this.data & (1<<(i-1))) != 0){
+        if (!this.contains(i)){
             this.data = (this.data  ^ (1<<(i-1)));
             ok = true;
-        } else {
-            ok = false;
         }
         System.out.println(Integer.toBinaryString(this.data));
         return ok;
