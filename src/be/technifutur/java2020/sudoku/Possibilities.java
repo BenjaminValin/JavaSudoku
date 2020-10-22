@@ -1,11 +1,9 @@
 package be.technifutur.java2020.sudoku;
 
-import be.technifutur.java2020.sudoku.sudoku4x4.Sudoku4x4Controleur;
-
 public class Possibilities {
     private int data = 0b000000000;
 
-    public boolean add(int i){                                              //Ajoute une possibilité
+    public boolean add(int i){                                                  //Ajoute une possibilité
         boolean ok = false;
         System.out.println("Ajout de " + i);
         if ((this.data & (1<<(i-1))) != 0){
@@ -18,7 +16,7 @@ public class Possibilities {
         return ok;
     }
 
-    public boolean remove(int i){                                           //Retire une possibilité
+    public boolean remove(int i){                                               //Retire une possibilité
         boolean ok = true;
         System.out.println("Retrait de " + i);
         if ((this.data & (1<<(i-1))) != 0){
@@ -31,46 +29,43 @@ public class Possibilities {
         return ok;
     }
 
-    public boolean contains(int i){                                      //Vérifie si un nombre est possible
+    public boolean contains(int i){                                             //Vérifie si un nombre est possible
         boolean ok = true;
-        if (((this.data & (1<<(i-1))) != 0)) {
-            ok = true;
-        } else {
-            ok = false;
-        }
-
+        ok = (this.data & (1 << (i - 1))) == 0;
         return ok;
     }
 
-    public int size(){                                              //Compte le nombre de possibilités restantes
-        int count = 0;
+    public int size(){                                                          //Compte le nombre de possibilités restantes
+        int count = 9;
         for(int c = 1; c<=9;c++){
             if (((this.data & (1<<(c-1))) != 0)) {
-                count++;
+                count--;
             }
         }
-        return (9-count);
+        return count;
     }
 
     public static void main(String[] args) {
 
         Possibilities p = new Possibilities();
 
-        int test = 5;
-        boolean verif;
         System.out.println(p.add(5));
         System.out.println(p.add(2));
         System.out.println(p.add(6));
         System.out.println(p.add(8));
+        System.out.println(p.add(8));
         System.out.println(p.add(9));
         System.out.println(p.add(1));
+        System.out.println("Possibilités restantes pour cette case : " + p.size());
+        System.out.println("Puis-je mettre le chiffre 1? " + p.contains(1));
         System.out.println(p.remove(1));
         System.out.println(p.remove(5));
+        System.out.println("Possibilités restantes pour cette case : " + p.size());
         System.out.println(p.remove(8));
         System.out.println(p.remove(2));
-        System.out.println(p.contains(6));
-        System.out.println(p.contains(2));
-        System.out.println("Possibilités restantes : " + p.size());
+        System.out.println("Puis-je mettre le chiffre 6? " + p.contains(6));
+        System.out.println("Puis-je mettre le chiffre 2? " + p.contains(2));
+        System.out.println("Possibilités restantes pour cette case : " + p.size());
 
     }
 }
