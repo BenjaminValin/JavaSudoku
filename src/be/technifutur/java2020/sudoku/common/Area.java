@@ -1,20 +1,22 @@
 package be.technifutur.java2020.sudoku.common;
 
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
+
 
 public class Area {
 
     private Possibilities possibility;
     private AreaType type;
-    private Set<Position> positionSet = new HashSet<>();
+    private Set<Position> positionSet;
 
     public Area(int size, AreaType type, Position first){
-        possibility = new Possibilities(size);                                  //Crée un ensemble de possibilités de la taille de la zone
+        this.possibility = new Possibilities(size);                                     //Crée un ensemble de possibilités de la taille de la zone
         this.type = type;
-        this.positionSet = new HashSet<>();                                     //Donne la première position pour la zone
+        this.positionSet = new LinkedHashSet<>();                                       //Stocke l'adresse d'un ensemble de positions pour la zone
 
-        switch(type){                                                           //Initialise la zone selon le paramètre passé
+        switch(type){                                                                   //Initialise la zone selon le paramètre passé
             case LINE:
                 initLine(size, first);
                 break;
@@ -44,29 +46,54 @@ public class Area {
         int sqrtSize = (int)Math.sqrt(size);
         for(int i = 0; i < sqrtSize; i++){
             for(int j = 0; j < sqrtSize; j++){
-                Position positionNew = new Position(first.getLine()+i, first.getColumn()+i);
+                Position positionNew = new Position(first.getLine()+i, first.getColumn()+j);
                 positionSet.add(positionNew);
             }
         }
     }
 
+    public AreaType getType() {
+        return type;
+    }
 
     public Set<Position> getPositionSet(){
-        return positionSet;
+        return Collections.unmodifiableSet(positionSet);
     }
 
-    public void addPosition(int x, int y){
-        Position position = new Position(x, y);
+// Méthodes déléguées (code -> Generate... -> Delegate Methods...) :
+    public boolean add(int i) {
+        return possibility.add(i);
     }
 
-    public static void main(String[] args) {
+    public boolean remove(int i) {
+        return possibility.remove(i);
+    }
+
+    public boolean contains(int i) {
+        return possibility.contains(i);
+    }
+
+    public int size() {
+        return possibility.size();
+    }
+
+ /*   public static void main(String[] args) {
         Area area = new Area(9, AreaType.LINE, new Position(5,0));
         System.out.println(area.positionSet.size());
+        for (Position p : area.getPositionSet()){
+            System.out.println(p.toString());
+        }
 
         Area area2 = new Area(9, AreaType.COLUMN, new Position(0,6));
-        System.out.println(area.positionSet.size());
+        System.out.println(area2.positionSet.size());
+        for (Position p : area2.getPositionSet()){
+            System.out.println(p.toString());
+        }
 
         Area area3 = new Area(9, AreaType.SQUARE, new Position(3,3));
-        System.out.println(area.positionSet.size());
-    }
+        System.out.println(area3.positionSet.size());
+        for (Position p : area3.getPositionSet()){
+            System.out.println(p.toString());
+        }
+    }*/
 }

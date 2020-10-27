@@ -33,5 +33,13 @@ public class Position {
         return Objects.hash(line, column);
     }
 
+    @Override                                                       //Permet un affichage personnalisé une fois overridé
+    public String toString() {
+        return "Position{" +
+                "line=" + line +
+                ", column=" + column +
+                '}';
+    }
+
     //La position est figée, sa valeur ne peut être donnée que dans le constructeur, et jamais modifiée ailleurs
 }
