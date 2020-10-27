@@ -1,6 +1,6 @@
 package be.technifutur.java2020.sudoku;
 
-public class Cellule {
+public class Cell {
 
     private Possibilities line;
     private Possibilities column;
