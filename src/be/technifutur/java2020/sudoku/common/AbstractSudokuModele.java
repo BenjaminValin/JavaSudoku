@@ -1,12 +1,14 @@
 package be.technifutur.java2020.sudoku.common;
 
+import java.util.Map;
+
 public abstract class AbstractSudokuModele {
 
     public static final char EMPTY = 0;                                 //Valeur 0 par défaut
-    private char[][] grille;                                            //Grille
+    private Map<Position,Cell> grille;
 
-    protected AbstractSudokuModele(int nbLigne, int nbCol){             //Constructeur initialisant une grille, il s'adapte selon ce que le descendant lui donne
-        grille = new char[nbLigne][nbCol];
+    protected AbstractSudokuModele(Map<Position,Cell> grille){          //Constructeur initialisant une grille, il s'adapte selon ce que le descendant lui donne
+        this.grille = grille;
     }
 
     public void setValue (char value, int l, int c) {                   //Vérifie si la valeur est correcte, puis la place
@@ -25,7 +27,13 @@ public abstract class AbstractSudokuModele {
 
     public abstract boolean isValid(char value);
 
-    public abstract boolean isPositionValid (int l, int c);
+    public boolean isPositionValid (int l, int c){
+        return isPositionValid(new Position(l,c));
+    }
+
+    public boolean isPositionValid(Position position) {
+        return this.grille.keySet().contains(position);
+    }
 
     public boolean isEmpty (int l, int c){                              //Vérifie si la position entrée est vide
         boolean empty = true;
