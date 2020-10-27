@@ -1,5 +1,7 @@
 package be.technifutur.java2020.sudoku;
 
+import be.technifutur.java2020.sudoku.common.Possibilities;
+
 public class Cell {
 
     private Possibilities line;
