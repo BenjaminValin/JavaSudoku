@@ -9,6 +9,8 @@ public class Cell {
 
     private Position position;
     private Set<Area> areaSet;
+    public static final char EMPTY = 0;
+    private char value = EMPTY;
 
 
     public Cell(Position position){
@@ -29,16 +31,41 @@ public class Cell {
     }
 
     public void setValue(char value) {
-        //TODO à coder
-    }
+        int valOld = Character.getNumericValue(this.value);
+        int valNew = Character.getNumericValue(value);
+        boolean used = false;
+        boolean empty = isEmpty();
 
-    public char getValue() {
-        //TODO à coder
-        return 0;
+        for(Area a : areaSet){
+            used = a.contains(valNew);
+        }
+
+        if (!used && empty) {
+            for (Area a : areaSet) {
+                a.remove(valNew);
+            }
+            this.value = value;
+        } else {
+            if(!used){
+                for(Area a : areaSet){
+                    a.add(valOld);
+                    a.remove(valNew);
+                }
+                this.value = value;
+            }
+        }
     }
 
     public void removeValue() {
-        //TODO à coder
+        int val = Character.getNumericValue(this.value);
+        for(Area a : areaSet){
+            a.add(val);
+        }
+        this.value = EMPTY;
+    }
+
+    public char getValue() {
+        return this.value;
     }
 
     @Override
@@ -73,12 +100,14 @@ public class Cell {
 
     public void isValid(){
 
+    }*/
+
+    public boolean isEmpty(){
+        boolean empty = false;
+        if (this.value == EMPTY){
+            empty = true;
+        }
+        return empty;
     }
-
-    public void isEmpty(){
-
-    }
-
-    */
 
 }

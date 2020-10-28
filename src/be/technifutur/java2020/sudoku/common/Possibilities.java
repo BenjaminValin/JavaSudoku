@@ -71,7 +71,7 @@ public class Possibilities {
                 '}';
     }
 
-    /*
+
     public static void main(String[] args) {
 
         Possibilities p = new Possibilities(9);
@@ -91,5 +91,5 @@ public class Possibilities {
         System.out.println("Le chiffre 2 est-il déjà placé? : " + p.contains(2));
         System.out.println("Possibilités déjà utilisées pour cette case : " + p.size());
 
-    }*/
+    }
 }
