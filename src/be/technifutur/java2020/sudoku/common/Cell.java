@@ -10,6 +10,7 @@ public class Cell {
     private Position position;
     private Set<Area> areaSet;
 
+
     public Cell(Position position){
         this.position = position;
         areaSet = new HashSet<>();
@@ -27,11 +28,24 @@ public class Cell {
         return add;
     }
 
+    public void setValue(char value) {
+        //TODO à coder
+    }
+
+    public char getValue() {
+        //TODO à coder
+        return 0;
+    }
+
+    public void removeValue() {
+        //TODO à coder
+    }
+
     /*private Possibilities line;
     private Possibilities column;
     private Possibilities square;
-    private char valeur;
     private boolean modif;
+    private char value;
 
     public void addLine(Possibilities p){
 
@@ -57,12 +71,6 @@ public class Cell {
 
     }
 
-    public void setValue(char c){
-        this.valeur = c;
-    }
-
-    public char getValue(){
-        return this.valeur;
-    }*/
+    */
 
 }
