@@ -29,7 +29,7 @@ public abstract class AbstractSudokuModele {
     }
 
     public char getValue(int l, int c){                                 //Retourne la valeur à une position si celle-ci est correcte
-        getValue(new Position(l,c));
+        return getValue(new Position(l,c));
     }
 
     public char getValue(Position p){
@@ -53,7 +53,7 @@ public abstract class AbstractSudokuModele {
     }
 
     public boolean isEmpty (int l, int c){                            //Vérifie si la position entrée est vide
-        isEmpty(new Position(l,c));
+        return isEmpty(new Position(l,c));
     }
 
     public boolean isEmpty (Position p){

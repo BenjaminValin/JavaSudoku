@@ -63,7 +63,15 @@ public class Possibilities {
     public int size(){                                                          //Compte le nombre de possibilités restantes
         return Integer.bitCount(this.data);
     }
-/*
+
+    @Override
+    public String toString() {
+        return "Possibilities{" +
+                "data=" + data +
+                '}';
+    }
+
+    /*
     public static void main(String[] args) {
 
         Possibilities p = new Possibilities(9);

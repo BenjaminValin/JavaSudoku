@@ -2,6 +2,7 @@ package be.technifutur.java2020.sudoku.common;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -77,7 +78,31 @@ public class Area {
         return possibility.size();
     }
 
- /*   public static void main(String[] args) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Area area = (Area) o;
+        return Objects.equals(possibility, area.possibility) &&
+                type == area.type &&
+                Objects.equals(positionSet, area.positionSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(possibility, type, positionSet);
+    }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "possibility=" + possibility +
+                ", type=" + type +
+                ", positionSet=" + positionSet +
+                '}';
+    }
+
+    /*   public static void main(String[] args) {
         Area area = new Area(9, AreaType.LINE, new Position(5,0));
         System.out.println(area.positionSet.size());
         for (Position p : area.getPositionSet()){

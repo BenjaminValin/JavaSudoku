@@ -41,6 +41,14 @@ public class Cell {
         //TODO à coder
     }
 
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "position=" + position +
+                ", areaSet=" + areaSet +
+                '}';
+    }
+
     /*private Possibilities line;
     private Possibilities column;
     private Possibilities square;

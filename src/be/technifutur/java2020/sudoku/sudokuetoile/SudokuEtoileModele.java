@@ -1,12 +1,16 @@
 package be.technifutur.java2020.sudoku.sudokuetoile;
 
 import be.technifutur.java2020.sudoku.common.AbstractSudokuModele;
+import be.technifutur.java2020.sudoku.common.Cell;
+import be.technifutur.java2020.sudoku.common.Position;
+
+import java.util.Map;
 
 public class SudokuEtoileModele extends AbstractSudokuModele {
 
-    protected SudokuEtoileModele(){
+    /*protected SudokuEtoileModele(){
         super(21,21);
-    }
+    }*/
 
     public boolean isValid(char value){                                 //Vérifie si la valeur entrée est valide
         boolean valid = false;
@@ -16,6 +20,11 @@ public class SudokuEtoileModele extends AbstractSudokuModele {
             valid = val >= 1 && val <= 9;
         }
         return valid;
+    }
+
+    @Override
+    public Map<Position, Cell> getGrille() {
+        return null;
     }
 
     public boolean isPositionValid (int l, int c){                      //Vérifie si la position entrée est valide
