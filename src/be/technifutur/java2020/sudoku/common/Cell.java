@@ -1,6 +1,7 @@
 package be.technifutur.java2020.sudoku.common;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Cell {
@@ -36,8 +37,11 @@ public class Cell {
         boolean used = false;
         boolean empty = isEmpty();
 
-        for(Area a : areaSet){
-            used = a.contains(valNew);
+        Iterator<Area> iterator = areaSet.iterator();
+        while (iterator.hasNext() && !used) {
+            if (!(iterator.next().contains(valNew))) {
+                used = true;
+            }
         }
 
         if (!used && empty) {
