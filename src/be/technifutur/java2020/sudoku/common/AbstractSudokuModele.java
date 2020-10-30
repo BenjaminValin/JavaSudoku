@@ -11,9 +11,13 @@ public abstract class AbstractSudokuModele {
     }
 
     public void setValue (char value, Position p) {
-        if (this.isValid(value) && this.isPositionValid(p)) {
-            Cell cell = getCell(p);
-            cell.setValue(value);
+        try {
+            if (this.isValid(value) && this.isPositionValid(p)) {
+                Cell cell = getCell(p);
+                cell.setValue(value);
+            }
+        } catch (SudokuException s) {
+            System.out.println(s.getMessage());
         }
     }
 

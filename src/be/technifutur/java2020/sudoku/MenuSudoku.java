@@ -31,16 +31,25 @@ public class MenuSudoku {
                         Sudoku4x4Controleur ctrl4 = new Sudoku4x4Controleur();
                         Sudoku4x4Modele modele4 = new Sudoku4x4Modele();
                         Sudoku4x4Vue vue4 = new Sudoku4x4Vue();
+                        vue4.setModele(modele4);
+                        ctrl4.setModele(modele4);
+                        ctrl4.setVue(vue4);
                         break;
                     case 2:
                         Sudoku9x9Controleur ctrl9 = new Sudoku9x9Controleur();
                         Sudoku9x9Modele modele9 = new Sudoku9x9Modele();
                         Sudoku9x9Vue vue9 = new Sudoku9x9Vue();
+                        vue9.setModele(modele9);
+                        ctrl9.setModele(modele9);
+                        ctrl9.setVue(vue9);
                         break;
                     case 3:
                         SudokuEtoileControleur ctrlE = new SudokuEtoileControleur();
                         SudokuEtoileModele modeleE = new SudokuEtoileModele();
                         SudokuEtoileVue vueE = new SudokuEtoileVue();
+                        vueE.setModele(modeleE);
+                        ctrlE.setModele(modeleE);
+                        ctrlE.setVue(vueE);
                         break;
                 }
                 menu[choice].afficheGrilleVide();

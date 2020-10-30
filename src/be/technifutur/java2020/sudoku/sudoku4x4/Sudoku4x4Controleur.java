@@ -13,12 +13,11 @@ public class Sudoku4x4Controleur {
         vue.setModele(modele);
         ctrl.setModele(modele);
         ctrl.setVue(vue);
+        vue.afficheGrille(modele);
         ctrl.baseData();
         vue.afficheGrille(modele);
         ctrl.start();
         while(!ctrl.valeur.equalsIgnoreCase("q") ){
-            modele.setValue(ctrl.num,ctrl.lig,ctrl.col);
-            vue.afficheGrille(modele);
             ctrl.start();
         }
     }
@@ -56,8 +55,8 @@ public class Sudoku4x4Controleur {
             stock = scanner.next();
             for(int j=0; j<stock.length();j++){
                 c = stock.charAt(j);
-                System.out.println(c);
                 this.modele.setValue(c,i,j);
+                //System.out.println("Caractère " + c +", ligne " + i + ", colonne " + j);
             }
             i++;
         }
@@ -68,10 +67,6 @@ public class Sudoku4x4Controleur {
         System.out.println("(Vous devez placer un point entre chaque valeur)");
         System.out.println("Pour quitter , entrez uniquement q/Q");
         this.valeur = scan.nextLine();
-        this.verify();
-    }
-
-    public void verify() {
         if (!this.valeur.equalsIgnoreCase("q")) {
             this.num = valeur.charAt(0);
             this.p1 = valeur.charAt(1);
@@ -80,10 +75,11 @@ public class Sudoku4x4Controleur {
             this.ctest = valeur.charAt(4);
             if (valeur.length() != 5 || !Character.isDigit(this.num) || !(this.p1 == '.') || !Character.isDigit(this.ltest) || !(this.p2 == '.') || !Character.isDigit(this.ctest)) {
                 System.out.println("Erreur. Merci de rentrer des données valides");
-                this.start();
             } else {
                 this.lig = Character.getNumericValue(valeur.charAt(2));         //permet de convertir un chiffre de type char en chiffre de type int
                 this.col = Character.getNumericValue(valeur.charAt(4));
+                modele.setValue(this.num,this.lig,this.col);
+                vue.afficheGrille(modele);
             }
         }
     }

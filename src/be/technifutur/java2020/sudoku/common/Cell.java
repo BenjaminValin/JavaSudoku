@@ -23,6 +23,38 @@ public class Cell {
         return position;
     }
 
+    public void setValue(char value) throws SudokuException {
+        int valOld = Character.getNumericValue(this.value);
+        int valNew = Character.getNumericValue(value);
+        boolean used = false;
+        boolean empty = isEmpty();
+        if (valOld == valNew) {
+            throw new SudokuException("Oups, c'est la même valeur que tu tentes de rentrer une seconde fois");
+        } else {
+            Iterator<Area> iterator = areaSet.iterator();
+            while (iterator.hasNext() && !used) {
+                Area zone = iterator.next();
+                if (!(zone.contains(valNew))) {
+                    throw new SudokuException("La valeur existe déjà dans la zone " + zone.getType());
+                }
+            }
+            if (!used && empty) {
+                for (Area a : areaSet) {
+                    a.remove(valNew);
+                }
+                this.value = value;
+            } else {
+                if(!used){
+                    for(Area a : areaSet){
+                        a.add(valOld);
+                        a.remove(valNew);
+                    }
+                    this.value = value;
+                }
+            }
+        }
+    }
+
     public boolean add(Area area) { //Méthode add() de la classe Set, elle vérifie si la position de la cellule est contenue dans la zone
         boolean add = false;
         if(area.getPositionSet().contains(this.position)) { //Méthode contains() de la classe Set
@@ -31,41 +63,12 @@ public class Cell {
         return add;
     }
 
-    public void setValue(char value) {
-        int valOld = Character.getNumericValue(this.value);
-        int valNew = Character.getNumericValue(value);
-        boolean used = false;
-        boolean empty = isEmpty();
-
-        Iterator<Area> iterator = areaSet.iterator();
-        while (iterator.hasNext() && !used) {
-            if (!(iterator.next().contains(valNew))) {
-                used = true;
-            }
-        }
-
-        if (!used && empty) {
-            for (Area a : areaSet) {
-                a.remove(valNew);
-            }
-            this.value = value;
-        } else {
-            if(!used){
-                for(Area a : areaSet){
-                    a.add(valOld);
-                    a.remove(valNew);
-                }
-                this.value = value;
-            }
-        }
-    }
-
     public void removeValue() {
         int val = Character.getNumericValue(this.value);
-        for(Area a : areaSet){
-            a.add(val);
-        }
-        this.value = EMPTY;
+            for(Area a : areaSet){
+                a.add(val);
+            }
+            this.value = EMPTY;
     }
 
     public char getValue() {

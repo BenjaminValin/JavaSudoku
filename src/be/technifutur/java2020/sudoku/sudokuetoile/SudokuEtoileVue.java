@@ -1,6 +1,7 @@
 package be.technifutur.java2020.sudoku.sudokuetoile;
 
 import be.technifutur.java2020.sudoku.Sudoku;
+import be.technifutur.java2020.sudoku.sudoku9x9.Sudoku9x9Modele;
 
 public class SudokuEtoileVue implements Sudoku {
 
@@ -37,8 +38,14 @@ public class SudokuEtoileVue implements Sudoku {
             "| . . . | . . . | . . . |       | . . . | . . . | . . . |\n"+
             "+-------+-------+-------+       +-------+-------+-------+\n";
 
+    private SudokuEtoileModele modele;
+
     public String getName() {
         return this.name;
+    }
+
+    public void setModele(SudokuEtoileModele exemple){
+        this.modele = exemple;
     }
 
     @Override
