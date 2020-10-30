@@ -1,14 +1,20 @@
 package be.technifutur.java2020.sudoku.sudoku4x4;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Sudoku4x4Controleur {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Sudoku4x4Controleur ctrl = new Sudoku4x4Controleur();
         Sudoku4x4Vue vue = new Sudoku4x4Vue();
         Sudoku4x4Modele modele = new Sudoku4x4Modele();
-
+        vue.setModele(modele);
+        ctrl.setModele(modele);
+        ctrl.setVue(vue);
+        ctrl.baseData();
+        vue.afficheGrille(modele);
         ctrl.start();
         while(!ctrl.valeur.equalsIgnoreCase("q") ){
             modele.setValue(ctrl.num,ctrl.lig,ctrl.col);
@@ -40,6 +46,23 @@ public class Sudoku4x4Controleur {
         return modele;
     }
 
+    public void baseData() throws FileNotFoundException {
+        File sudoku = new File("sudoku4.txt");
+        Scanner scanner = new Scanner(sudoku);
+        String stock = "";
+        char c = ' ';
+        int i = 0;
+        while (scanner.hasNextLine()){
+            stock = scanner.next();
+            for(int j=0; j<stock.length();j++){
+                c = stock.charAt(j);
+                System.out.println(c);
+                this.modele.setValue(c,i,j);
+            }
+            i++;
+        }
+    }
+
     public void start(){
         System.out.println("Donne-moi le chiffre à entrer dans le sudoku, le chiffre correspondant à la ligne, et le chiffre correspondant à la colonne :");
         System.out.println("(Vous devez placer un point entre chaque valeur)");
@@ -59,8 +82,8 @@ public class Sudoku4x4Controleur {
                 System.out.println("Erreur. Merci de rentrer des données valides");
                 this.start();
             } else {
-                this.lig = Character.getNumericValue(valeur.charAt(2)) -1;         //permet de convertir un chiffre de type char en chiffre de type int
-                this.col = Character.getNumericValue(valeur.charAt(4)) -1;
+                this.lig = Character.getNumericValue(valeur.charAt(2));         //permet de convertir un chiffre de type char en chiffre de type int
+                this.col = Character.getNumericValue(valeur.charAt(4));
             }
         }
     }

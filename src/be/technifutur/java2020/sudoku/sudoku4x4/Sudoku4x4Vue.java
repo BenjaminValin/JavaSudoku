@@ -21,7 +21,7 @@ public class Sudoku4x4Vue extends AbstractSudokuVue implements Sudoku {
                         "+-----+-----+"+
                         "| . . | . . |"+
                         "| . . | . . |"+
-                        "+-----+-----+");
+                        "+-----+-----+", 4);
     }
 
     private Sudoku4x4Modele modele;
@@ -51,7 +51,7 @@ public class Sudoku4x4Vue extends AbstractSudokuVue implements Sudoku {
         int cpt=0;
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
-                if (modele.isEmpty(x, y)) {
+                if (exemple.isEmpty(x, y)) {
                     conversion[cpt] = '.';
                 } else {
                     conversion[cpt] = exemple.getValue(x, y);

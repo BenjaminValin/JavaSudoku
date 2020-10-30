@@ -9,10 +9,11 @@ public abstract class AbstractSudokuVue {
     private AbstractSudokuModele modele;
 
 
-    protected AbstractSudokuVue(String n, String c, String g) {
+    protected AbstractSudokuVue(String n, String c, String g, int l) {
         name = new String(n);
         grille = new String(c);
         grilleVide = new String(g);
+        length = l;
     }
 
     public String getName() {
@@ -27,8 +28,8 @@ public abstract class AbstractSudokuVue {
         return this.modele;
     }
 
-    public void setLength(){
-
+    public void setLength(int length){
+        this.length = length;
     }
 
     public int getLength() {
@@ -44,7 +45,7 @@ public abstract class AbstractSudokuVue {
         int cpt = 0;
         for (int x = 0; x < length; x++) {
             for (int y = 0; y < length; y++) {
-                if (modele.isEmpty(x, y)) {
+                if (exemple.isEmpty(x, y)) {
                     conversion[cpt] = '.';
                 } else {
                     conversion[cpt] = exemple.getValue(x, y);
