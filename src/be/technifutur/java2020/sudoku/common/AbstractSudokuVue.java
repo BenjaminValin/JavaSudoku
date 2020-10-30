@@ -3,7 +3,7 @@ package be.technifutur.java2020.sudoku.common;
 public abstract class AbstractSudokuVue {
 
     private String name;
-    private String canevas;
+    private String grille;
     private String grilleVide;
     private int length;
     private AbstractSudokuModele modele;
@@ -11,7 +11,7 @@ public abstract class AbstractSudokuVue {
 
     protected AbstractSudokuVue(String n, String c, String g) {
         name = new String(n);
-        canevas = new String(c);
+        grille = new String(c);
         grilleVide = new String(g);
     }
 
@@ -52,7 +52,7 @@ public abstract class AbstractSudokuVue {
                 cpt++;
             }
         }
-        System.out.printf(canevas.replace(".", "%s"), conversion);
+        System.out.printf(grille.replace(".", "%s"), conversion);
     }
 
 }

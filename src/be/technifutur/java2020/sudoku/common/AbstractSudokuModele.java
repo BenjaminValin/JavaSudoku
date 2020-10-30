@@ -41,6 +41,8 @@ public abstract class AbstractSudokuModele {
 
     public abstract boolean isValid(char value);
 
+    public abstract int getNbCase();
+
     public abstract Map<Position,Cell> getGrille();
 
     public boolean isPositionValid (int l, int c){

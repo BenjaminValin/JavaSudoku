@@ -23,6 +23,11 @@ public class SudokuEtoileModele extends AbstractSudokuModele {
     }
 
     @Override
+    public int getNbCase() {
+        return 0;
+    }
+
+    @Override
     public Map<Position, Cell> getGrille() {
         return null;
     }

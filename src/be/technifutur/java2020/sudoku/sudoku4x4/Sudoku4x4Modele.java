@@ -76,7 +76,6 @@ public class Sudoku4x4Modele extends AbstractSudokuModele {
                 lineList.add(new Area(4, AreaType.LINE, new Position(i, 0)));
                 columnTab[i] = new Area(4, AreaType.COLUMN, new Position(0, i));
                 squareTab[i] = new Area(4, AreaType.COLUMN, new Position(i / 2 * 2, i % 2 * 2));
-
             }
             // construire les Cell
             // construire les Position
@@ -95,6 +94,7 @@ public class Sudoku4x4Modele extends AbstractSudokuModele {
         return map;
     }
 
+    @Override
     public int getNbCase(){
         return 4*4;
     }

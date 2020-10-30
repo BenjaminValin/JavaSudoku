@@ -27,8 +27,17 @@ public class Sudoku4x4Controleur {
     public void setVue(Sudoku4x4Vue exemple){
         this.vue = exemple;
     }
+
+    public Sudoku4x4Vue getVue() {
+        return vue;
+    }
+
     public void setModele(Sudoku4x4Modele exemple){
         this.modele = exemple;
+    }
+
+    public Sudoku4x4Modele getModele() {
+        return modele;
     }
 
     public void start(){

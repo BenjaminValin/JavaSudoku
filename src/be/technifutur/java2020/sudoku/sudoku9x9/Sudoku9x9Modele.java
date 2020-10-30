@@ -23,6 +23,11 @@ public class Sudoku9x9Modele extends AbstractSudokuModele {
     }
 
     @Override
+    public int getNbCase() {
+        return 0;
+    }
+
+    @Override
     public Map<Position, Cell> getGrille() {
         // construire la map
         HashMap<Position, Cell> map = new HashMap<>();
