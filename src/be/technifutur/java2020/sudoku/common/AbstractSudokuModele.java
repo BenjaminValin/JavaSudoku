@@ -4,7 +4,6 @@ import java.util.Map;
 
 public abstract class AbstractSudokuModele {
 
-    public static final char EMPTY = 0;                                 //Valeur 0 par défaut
     //private Map<Position,Cell> grille;
 
     public void setValue (char value, int l, int c) {                   //Vérifie si la valeur est correcte, puis la place
@@ -33,7 +32,7 @@ public abstract class AbstractSudokuModele {
     }
 
     public char getValue(Position p){
-        char val = 0;
+        char val = Cell.EMPTY;
         if(this.isPositionValid(p)) {
             val = getCell(p).getValue();
         }
@@ -60,7 +59,7 @@ public abstract class AbstractSudokuModele {
         boolean empty = true;
         if(this.isPositionValid(p)) {
             Cell cell = getGrille().get(p);
-            empty = cell.getValue() == EMPTY;
+            empty = cell.getValue() == Cell.EMPTY;
         }
         return empty;
     }
