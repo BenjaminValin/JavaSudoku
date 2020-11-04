@@ -37,6 +37,7 @@ public class Sudoku4x4Vue extends AbstractSudokuVue implements Sudoku {
 
     @Override
     public void afficheGrilleVide() {
+        System.out.println("Grille 4X4 vide");
         System.out.println("+-----+-----+");
         System.out.println("| . . | . . |");
         System.out.println("| . . | . . |");

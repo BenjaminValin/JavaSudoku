@@ -51,7 +51,6 @@ public class SudokuEtoileVue implements Sudoku {
     @Override
     public void afficheGrilleVide(){
         System.out.println("Grille Etoile vide");
-
         System.out.println("+-------+-------+-------+       +-------+-------+-------+");
         System.out.println("| . . . | . . . | . . . |       | . . . | . . . | . . . |");
         System.out.println("| . . . | . . . | . . . |       | . . . | . . . | . . . |");

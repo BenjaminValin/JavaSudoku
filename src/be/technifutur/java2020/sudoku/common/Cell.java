@@ -12,6 +12,7 @@ public class Cell {
     private Set<Area> areaSet;
     public static final char EMPTY = 0;
     private char value = EMPTY;
+    public static int casesRemplies = 0;
 
 
     public Cell(Position position){
@@ -29,7 +30,7 @@ public class Cell {
         boolean used = false;
         boolean empty = isEmpty();
         if (valOld == valNew) {
-            throw new SudokuException("Oups, c'est la même valeur que tu tentes de rentrer une seconde fois");
+            throw new SudokuException("Même valeur entrée une seconde fois dans la case");
         } else {
             Iterator<Area> iterator = areaSet.iterator();
             while (iterator.hasNext() && !used) {
@@ -43,6 +44,7 @@ public class Cell {
                     a.remove(valNew);
                 }
                 this.value = value;
+                casesRemplies++;
             } else {
                 if(!used){
                     for(Area a : areaSet){
@@ -69,6 +71,7 @@ public class Cell {
                 a.add(val);
             }
             this.value = EMPTY;
+            casesRemplies--;
     }
 
     public char getValue() {

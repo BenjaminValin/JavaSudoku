@@ -2,15 +2,15 @@ package be.technifutur.java2020.sudoku.sudoku9x9;
 
 import be.technifutur.java2020.sudoku.common.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Sudoku9x9Modele extends AbstractSudokuModele {
 
     /*protected Sudoku9x9Modele(){
         super(9,9);
     }*/
+
+    private HashMap<Position, Cell> map;
 
     public boolean isValid(char value){                                 //Vérifie si la valeur entrée est valide
         boolean valid = false;
@@ -29,29 +29,44 @@ public class Sudoku9x9Modele extends AbstractSudokuModele {
 
     @Override
     public Map<Position, Cell> getGrille() {
-        // construire la map
-        HashMap<Position, Cell> map = new HashMap<>();
-        // construire les Area
-        ArrayList<Area> lineList = new ArrayList<>();
-        Area[] columnTab = new Area[9];
-        Area[] squareTab = new Area[9];
-        for (int i=0;i<9;i++){
-            lineList.add(new Area (9, AreaType.LINE,new Position(i,0)));
-            columnTab[i] = new Area (9,AreaType.COLUMN,new Position(0,i));
-            squareTab[i] = new Area (9,AreaType.COLUMN,new Position(i/3*3,i%3*3));
-
-        }
-        // construire les Cell
-        // construire les Position
-        //Associer le tout
-        for(int l = 0; l < 9; l++){
-            for(int c = 0; c < 9; c++){
-                Position p = new Position(l, c);
-                Cell cell = new Cell(p);
-                map.put(p, cell);
-                cell.add(lineList.get(l));
-                cell.add(columnTab[c]);
-                cell.add(squareTab[((l/3)*3)+(c/3)]);
+        if (map == null){
+            // Construire le stockage d'Area
+            Set<Area> stockArea = new HashSet<>();
+            // construire la map
+            map = new HashMap<>();
+            // construire les Cell
+            // construire les Position
+            for (int l=0;l<9;l++){
+                for (int c=0;c<9;c++){
+                    Position p = new Position (l,c);
+                    map.put(p,new Cell(p));
+                }
+            }
+            Cell.casesRemplies = 0;
+            // construire les Area
+            for (int x=0;x<9;x++){
+                Position pl = new Position(x,0);
+                Area al = new Area (9,AreaType.LINE,pl);
+                stockArea.add(al);
+                Position pc = new Position(0,x);
+                Area ac = new Area (9,AreaType.COLUMN,pc);
+                stockArea.add(ac);
+            }
+            for (int l=0;l<9;l=l+3){
+                for (int c=0;c<9;c=c+3){
+                    Position p = new Position (l,c);
+                    Area a = new Area (9,AreaType.SQUARE,p);
+                    stockArea.add(a);
+                }
+            }
+            // Associer le tout
+            for (int l=0;l<9;l++){
+                for (int c=0;c<9;c++){
+                    Position p = new Position (l,c);
+                    for(Area a : stockArea){
+                        map.get(p).add(a);
+                    }
+                }
             }
         }
         return map;

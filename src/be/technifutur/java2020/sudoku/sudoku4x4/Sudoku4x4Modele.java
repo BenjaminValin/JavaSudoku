@@ -18,7 +18,7 @@ public class Sudoku4x4Modele extends AbstractSudokuModele {
         return valid;
     }
 
-    /*@Override
+    @Override
     public Map<Position, Cell> getGrille() {
         if (map == null){
             // Construire le stockage d'Area
@@ -33,6 +33,7 @@ public class Sudoku4x4Modele extends AbstractSudokuModele {
                     map.put(p,new Cell(p));
                 }
             }
+            Cell.casesRemplies = 0;
             // construire les Area
             for (int x=0;x<4;x++){
                 Position pl = new Position(x,0);
@@ -60,9 +61,9 @@ public class Sudoku4x4Modele extends AbstractSudokuModele {
             }
         }
         return map;
-    }*/
+    }
 
-    @Override
+    /*@Override
     public Map<Position, Cell> getGrille() {
         if (map == null) {
             // construire la map si elle n'existe pas encore
@@ -87,12 +88,12 @@ public class Sudoku4x4Modele extends AbstractSudokuModele {
                     map.put(p, cell);
                     cell.add(lineList.get(l));
                     cell.add(columnTab[c]);
-                    cell.add(squareTab[((l / 2) * 2) + (c / 2)]);
+                    cell.add(squareTab[((l / 2) * 2) + (c % 2)]);
                 }
             }
         }
         return map;
-    }
+    }*/
 
     @Override
     public int getNbCase(){
